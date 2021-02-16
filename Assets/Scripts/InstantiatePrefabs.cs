@@ -1,23 +1,21 @@
 using UnityEngine;
 
 public class InstantiatePrefabs : MonoBehaviour {
-    public GameObject[] cameras;
+    public GameObject[] cameraPrefabs;
     private int _index;
+    private GameObject _currentCamera;
 
     private void Start() {
-        foreach (var c in cameras) {
-            c.SetActive(false);
-        }
-        cameras[_index].SetActive(true);
+        _currentCamera = Instantiate(cameraPrefabs[0]);
     }
 
     public void NextSkybox() {
-        cameras[_index].SetActive(false);
-        if (_index < cameras.Length -1) 
+        Destroy(_currentCamera);
+        if (_index < cameraPrefabs.Length -1) 
             _index++;
         else 
             _index = 0;
-        
-        cameras[_index].SetActive(true);
+
+        _currentCamera = Instantiate(cameraPrefabs[_index]);
     }
 }
