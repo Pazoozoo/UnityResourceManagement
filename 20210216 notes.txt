@@ -1,0 +1,80 @@
+In case 2:
+public Skybox skyBoxAsset;
+
+void OnButtonClick() {
+  skyBox = Instantiate(skyBoxAsset);
+}
+In case 3:
+public Skybox material;
+
+void OnButtonClick() {
+  var skyBoxAsset = Resources.Load("path/to/asset");
+  skyBox = Instantiate(skyBoxAsset);
+}
+
+
+First exercise: put all skyboxes in the scene. Toggle them.
+second exercise: Instantiate referenced skybox-prefabs (as we have done many times) and destroy them.
+third exercise: put every skybox in a separate scene. load these scenes.
+fourth exercise: use Resources.Load
+We saved 160MB with Solution 3, where do they come from?
+But of course, it comes at a disadvantage: no fluid level-progression, there's only whole scene loads and unloads
+(Memory Profiler > Detailed (instead of Simple, Dropdown) > Take Sample will give you more detailed info on what's loaded)
+
+
+First solution: all cameras in scene. We just activate and deactivate them.
+Problem: all game objects are in scene. All textures get loaded. Very high memory usage.
+
+Solution 2: reference prefabs with cameras from a script in the scene. Instantiate one camera at a time.
+Problem: all game objects are referenced in the scene. All textures still get loaded. Very high memory usage.
+Key Take-Away ==> Unity loads all Resources directly referenced from Scenes
+
+Your Script references a scriptableObjects? It gets loaded
+Your Script references a prefab? It gets loaded
+Your Script references an Audio File? It gets loaded
+That prefab that your script references references another prefab? It gets loaded
+regarding Solution 3:
+we can see, that the Memory Usage is heavily decreased. Because each Scene only loads the Resources that it needs. And its Resources can be unloaded, when the Scene is unloaded.
+
+Solution 4: Let's use Unity's Resources API to load Resources only when needed
+
+One more thing: be careful, when creating builds and profiling AFTER setting up assets in the Resources Folder. It might mess up your profiling with Resources-Overhead! 
+Delete / move the assets out of Resources when testing Asset Bundles and / or Scene Switches
+
+Unity-Assets => C++ => Load & Destroy
+C# Scripts => C# => new() & GC.Collect()
+
+Tip: GC.Collect only cleans up C# classes, therefor, it won't have an affect on Unity's Assets. But maybe, if you have a huge array for Pathfinding.
+Tip: The Garbage Collector defragments objects in memory that exist for long, to make sure, that you don't end up with too many small, unusable gaps.
+(check .net slides)
+
+UNLESS, it's a reference type (class / array / delegate / ...)
+Then it's allocated on the heap
+and only a pointer to the object (32 bit = 4 bytes, 64 bit = 8 bytes) is stored on the stack (and popped)
+
+Solution 5: StreamingAssets & Solution 6: AssetBundle
+From StreamingAssets, we can basically just load Textures, Audio, AssetBundles, Text assets, Video, other Binary formats, ...
+
+Steps:
+1 - Configure your Skyboxes to be part of AssetBundles
+2 - Build AssetBundles
+3 - Copy the Build Result to StreamingAssets
+4 - Load an Asset Bundle from StreamingAssets
+5 - Load the Asset (the Skybox) from that Asset Bundle
+6 - Instantiate it
+7 - ???
+8 - Profit!
+
+I can tell you: asset bundle compression is ridiculously efficient
+I've seen multiple 4 MB textures take only 100 kb in a single asset bundle
+
+Why use AssetBundles?
+- Compression
+- Platform Optimization
+- Easier API for loading
+Many other things:
+- compatibility with older script versions
+- ...
+
+Addressable is an abstraction layer on Asset Bundles that handles all the loading, unloading and caching of asset bundles for you
+It's as flexible and modern as using Asset Bundles and as easy to use as Resources, basically.

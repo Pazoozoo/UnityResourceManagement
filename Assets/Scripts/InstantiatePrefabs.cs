@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class InstantiatePrefabs : MonoBehaviour {
@@ -11,6 +12,9 @@ public class InstantiatePrefabs : MonoBehaviour {
 
     public void NextSkybox() {
         Destroy(_currentCamera);
+        Resources.UnloadUnusedAssets();
+        GC.Collect();
+        
         if (_index < cameraPrefabs.Length -1) 
             _index++;
         else 
