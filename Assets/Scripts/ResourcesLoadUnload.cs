@@ -10,6 +10,8 @@ public class ResourcesLoadUnload : MonoBehaviour {
 
     public void NextSkybox() {
         Destroy(_currentCamera);
+        Resources.UnloadUnusedAssets();
+        
         if (_index < 5) 
             _index++;
         else 
