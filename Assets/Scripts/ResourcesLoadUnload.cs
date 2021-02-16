@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 public class ResourcesLoadUnload : MonoBehaviour {
     private int _index;
@@ -11,6 +13,7 @@ public class ResourcesLoadUnload : MonoBehaviour {
     public void NextSkybox() {
         Destroy(_currentCamera);
         Resources.UnloadUnusedAssets();
+        GC.Collect();
         
         if (_index < 5) 
             _index++;
