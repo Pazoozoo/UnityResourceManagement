@@ -1,7 +1,8 @@
+using System;
 using System.IO;
 using UnityEngine;
 
-public class OneAssetBundle : MonoBehaviour {
+public class OneAssetBundleMaterialSwitch : MonoBehaviour {
     int _index;
     Skybox _skybox;
     AssetBundle _skyboxes;
@@ -17,15 +18,12 @@ public class OneAssetBundle : MonoBehaviour {
     }
     
     public void NextSkybox() {
-        // Destroy(_skybox.material);
-        // Resources.UnloadUnusedAssets();
-        // GC.Collect();
-        
         if (_index < 5) 
             _index++;
         else 
             _index = 0;
 
         _skybox.material = _skyboxes.LoadAsset<Material>("skybox" + _index);
+        Resources.UnloadUnusedAssets();
     }
 }
