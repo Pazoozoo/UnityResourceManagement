@@ -23,7 +23,7 @@ public class OneAssetBundleMaterialSwitch : MonoBehaviour {
         else 
             _index = 0;
         
-        _skyboxes.Unload(true);
         _skybox.material = _skyboxes.LoadAsset<Material>("skybox" + _index);
+        Resources.UnloadUnusedAssets();
     }
 }
