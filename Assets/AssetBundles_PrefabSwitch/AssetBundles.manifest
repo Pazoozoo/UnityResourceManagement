@@ -1,0 +1,7 @@
+ManifestFileVersion: 0
+CRC: 2786863271
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: skyboxprefabs
+      Dependencies: {}

@@ -15,7 +15,6 @@ public class ToggleSkyboxGameObjects : MonoBehaviour {
     public void NextSkybox() {
         cameras[_index].SetActive(false);
         Resources.UnloadUnusedAssets();
-        GC.Collect();
         
         if (_index < cameras.Length -1) 
             _index++;

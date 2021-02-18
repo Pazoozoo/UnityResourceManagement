@@ -13,7 +13,6 @@ public class OneAssetBundlePrefabSwitch : MonoBehaviour {
             Debug.Log("Failed to load AssetBundle");
             return;
         }
-
         InstantiateSkybox();
     }
     
