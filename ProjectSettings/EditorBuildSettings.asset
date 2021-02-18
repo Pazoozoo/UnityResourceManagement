@@ -5,10 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/OneAssetBundle_MaterialSwitch.unity
+    guid: 8b50c389da7632c428dd65caf5a596a6
   - enabled: 0
     path: Assets/Scenes/ResourcesLoadUnload.unity
     guid: 5367a8ea432122045b890f46db045c9f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/InstatiatePrefabs.unity
     guid: ccf35148e35c2fc488e56b9aacd3f4c9
   - enabled: 0
