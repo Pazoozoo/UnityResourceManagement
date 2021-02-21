@@ -1,0 +1,31 @@
+ManifestFileVersion: 0
+CRC: 2000975776
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 72dfd0140e341cfd0ba160baf2e2adde
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 0c49c645ae291dea64662731f700b489
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 20
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 45
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 81
+  Script: {instanceID: 0}
+- Class: 89
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Prefabs/Skybox (3).prefab
+Dependencies: []
